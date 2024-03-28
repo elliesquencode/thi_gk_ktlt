@@ -24,23 +24,18 @@ int isSuperPrime(int n)
     return isSuperPrime(n / 10);
 }
 
+int MinSPrime(int a[], int n)
+{
+    if (n == 1)
+        return isSuperPrime(a[0]) ? a[0] : -1;
+    return isSuperPrime(a[n - 1]) && (MinSPrime(a, n - 1) == -1 || a[n - 1] < MinSPrime(a, n - 1)) ? a[n - 1] : MinSPrime(a, n - 1);
+}
 int main()
 {
     int min = 1e9;
     int a[] = {19, 7331, 2, 23, 233, 24, 131, 181, 191, 100};
-    int size = sizeof(a) / sizeof(*a);
-    for (int i = 0; i < size; i++)
-    {
-        if (isSuperPrime(a[i]) == 1)
-        {
-            int ans = a[i];
-            if (min > ans)
-            {
-                min = ans;
-            }
-        }
-    }
-    printf("%d", min);
-
+    int n = sizeof(a) / sizeof(*a);
+    int ans = MinSPrime(a, n);
+    printf("%d", ans);
     return 0;
 }
