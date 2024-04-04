@@ -1,26 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 void convert(int n)
 {
     if (n == 0)
         return;
     convert(n / 16);
-    int remainder = n % 16;
-    if (remainder < 10)
+    int r = n % 16;
+    if (r < 10)
     {
-        printf("%d", remainder);
+        printf("%d", r);
     }
     else
     {
-        printf("%c", (char)(remainder + 55));
+        printf("%c", (char)(r + 55));
     }
 }
-
 int main()
 {
-    int n = 955;
+    int n = 995;
     convert(n);
-    printf("\n");
     return 0;
 }

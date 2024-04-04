@@ -36,9 +36,17 @@ int isPerPrime(int n)
     }
     return isPerPrime(sum(n));
 }
+int minPerfectPrime(int a[], int n)
+{
+    if (n == 1)
+        return isPerPrime(a[0]) ? a[0] : -1;
+    return isPerPrime(a[n - 1]) && (minPerfectPrime(a, n - 1) == -1 || a[n - 1] < minPerfectPrime(a, n - 1)) ? a[n - 1] : minPerfectPrime(a, n - 1);
+}
 int main()
 {
-    int num = 191;
-    printf("%d", isPerPrime(num));
+    int a[] = {34, 35, 78, 23, 173, 693, 7, 1303, 34, 22, 46, 90, 911, 8177};
+    int n = sizeof(a) / sizeof(*a);
+    int ans = minPerfectPrime(a, n);
+    printf("%d", ans);
     return 0;
 }
