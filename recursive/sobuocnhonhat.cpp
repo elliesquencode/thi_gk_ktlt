@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+int m1, m2, m3;
 int solve(int n)
 {
     if (n == 1)
@@ -18,6 +18,9 @@ int solve(int n)
         cnt3 = 1 + solve(n - 1);
     }
     // printf("%d %d %d\n", cnt1, cnt2, cnt3);
+    m1 = cnt1;
+    m2 = cnt2;
+    m3 = cnt3;
     int min = cnt1;
     if (cnt2 < min)
     {
@@ -29,10 +32,15 @@ int solve(int n)
     }
     return min;
 }
-
+void print(int m1, int m2, int m3)
+{
+    printf("%d %d %d", m1, m2, m3);
+}
 int main()
 {
     int n = 38;
     printf("%d", solve(n));
+    printf("\n");
+    print(m1, m2, m3);
     return 0;
 }
